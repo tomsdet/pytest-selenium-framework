@@ -20,4 +20,4 @@ def test_bolme():
     assert bolme(10,5) == 2
 
 def test_carpma():
-    assert carpma(3,3) == 9
+    assert carpma(3,3) == 10
