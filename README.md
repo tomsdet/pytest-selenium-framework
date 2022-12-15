@@ -1,5 +1,8 @@
 # pytest-selenium-framework
-Pytest ve Selenium kullanarak temel web test otomasyon framework kurulumu
+Pytest ve Selenium kullanarak temel web test otomasyon framework kurulumu video serisinin kodlarını içerir. https://www.youtube.com/playlist?list=PLbFzTYWXNlJ5F3L8Z1RIO4NLiyTXa2uZA 
+
+Master branch kodun en son halini içerir. Projenin bir ders anındaki halini o dersin branch inde bulabilirsiniz.
+
 # Terminalden (command line) testleri çalıştırmak
 
 pytest = projedeki tüm testleri çalıştırır.
