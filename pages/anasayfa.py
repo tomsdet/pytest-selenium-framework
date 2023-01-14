@@ -1,9 +1,12 @@
 from selenium.webdriver.common.by import By
 
+from pages.PageBase import PageBase
 
-class  Anasayfa:
+
+class  Anasayfa(PageBase):
 
     def __init__(self, driver):
+        super().__init__(driver)
         self.driver = driver
 
     UST_MENU_LINKLERI  = (By.CSS_SELECTOR, "ul.top-menu > li > a")
@@ -12,12 +15,7 @@ class  Anasayfa:
     ILK_URUN_FIYATI = (By.CSS_SELECTOR, "span.price.actual-price")
 
     def ust_menu_isimlerini_liste_ver(self):
-        elements = self.driver.find_elements(*Anasayfa.UST_MENU_LINKLERI)
-        actual_menu_items = []
-        for i in elements:
-            actual_menu_items.append(i.text)
-
-        return actual_menu_items
+        return self.webelement_listesinden_string_listesi_ver(Anasayfa.UST_MENU_LINKLERI)
 
     def ilk_urun_ismini_ver(self):
         ilk_urun_linki = self.driver.find_element(*Anasayfa.ILK_URUN_ISMI)
@@ -27,7 +25,8 @@ class  Anasayfa:
         return self.driver.find_element(*Anasayfa.ILK_URUN_FIYATI).text
 
     def ilk_urun_ismine_tikla(self):
-        self.driver.find_element(*Anasayfa.ILK_URUN_ISMI).click()
+        ilk_urun_ismi = self.wait_element_visibility(Anasayfa.ILK_URUN_ISMI)
+        ilk_urun_ismi.click()
 
     def gift_card_olmayan_ilk_urun_ismine_tikla(self):
         self.driver.find_element(*Anasayfa.ILK_GIFT_CARD_OLMAYAN_URUN_ISMI).click()

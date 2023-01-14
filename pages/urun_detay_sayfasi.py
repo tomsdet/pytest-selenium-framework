@@ -1,10 +1,13 @@
 import re
 from selenium.webdriver.common.by import By
 
+from pages.PageBase import PageBase
 
-class UrunDetaySayfasi:
+
+class UrunDetaySayfasi(PageBase):
 
     def __init__(self, driver):
+        super().__init__(driver)
         self.driver = driver
 
     SEPETTEKI_URUN_YAZISI = (By.CSS_SELECTOR, "a.ico-cart span:nth-child(2)")
@@ -23,7 +26,8 @@ class UrunDetaySayfasi:
         return int(re.findall(r'\d+', quantity)[0])
 
     def add_to_cart_buttona_tikla(self):
-        self.driver.find_element(*UrunDetaySayfasi.ADD_TO_CART_BUTTON).click()
+        add_to_cart_button = self.wait_element_visibility(UrunDetaySayfasi.ADD_TO_CART_BUTTON)
+        add_to_cart_button.click()
 
     def urun_ismini_ver(self):
         return self.driver.find_element(*UrunDetaySayfasi.URUN_ISMI).text.strip()
