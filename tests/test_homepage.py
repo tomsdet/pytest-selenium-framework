@@ -1,10 +1,11 @@
 import pytest
+import softest
 from pages.anasayfa import Anasayfa
 from pages.urun_detay_sayfasi import UrunDetaySayfasi
 
 
 @pytest.mark.usefixtures("setup")
-class TestHomepage:
+class TestHomepage(softest.TestCase):
 
     @pytest.fixture(autouse=True)
     def class_setup(self):
@@ -26,6 +27,6 @@ class TestHomepage:
         urun_detay_sayfasi = self.anasayfa.ilk_urun_ismine_tikla()
         urun_ismi_detay_sayfasi = urun_detay_sayfasi.urun_ismini_ver()
         urun_fiyat_detay_sayfasi = urun_detay_sayfasi.urun_fiyatini_ver()
-        assert urun_ismi == urun_ismi_detay_sayfasi
-        assert urun_fiyati == urun_fiyat_detay_sayfasi
-
+        self.soft_assert(self.assertEqual, urun_ismi, urun_ismi_detay_sayfasi, "Urun ismi detay sayfasinda farkli")
+        self.soft_assert(self.assertEqual, urun_fiyati, urun_fiyat_detay_sayfasi, "Urun fiyati detay sayfasinda farkli")
+        self.assert_all()
