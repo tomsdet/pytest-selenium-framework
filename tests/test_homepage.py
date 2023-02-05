@@ -12,6 +12,7 @@ class TestHomepage(softest.TestCase):
         self.anasayfa = Anasayfa(self.driver)
 
     def test_ust_menu_linklerini_dogrula(self):
+        self.driver.get(self.baseurl)
         expected_menu = ["BOOKS", "COMPUTERS", "ELECTRONICS", "APPAREL & SHOES", "DIGITAL DOWNLOADS",
                          "JEWELRY", "GIFT CARDS"]
 
@@ -21,7 +22,7 @@ class TestHomepage(softest.TestCase):
 
 
     def test_urun_ismine_tiklayinca_urun_detaylari_sayfasi_acilir(self):
-        self.driver.get("https://demowebshop.tricentis.com/")
+        self.driver.get(self.baseurl)
         urun_ismi = self.anasayfa.ilk_urun_ismini_ver()
         urun_fiyati = self.anasayfa.ilk_urun_fiyatini_ver()
         urun_detay_sayfasi = self.anasayfa.ilk_urun_ismine_tikla()
