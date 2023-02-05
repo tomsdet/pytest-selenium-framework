@@ -3,7 +3,7 @@ from selenium.webdriver.safari.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.chrome.service import Service as FirefoxService
+from selenium.webdriver.firefox.service import Service as FirefoxService
 import pytest
 
 @pytest.fixture(scope="class")
