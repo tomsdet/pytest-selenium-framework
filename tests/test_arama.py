@@ -25,7 +25,7 @@ class TestArama(unittest.TestCase):
     @data(*ExcelYardimcisi.excel_listeler_listesine_cevir("./testdata/arama.xlsx", "Sheet1"))
     @unpack
     def test_arama(self, senaryoturu, kelime, beklenen_mesaj):
-        self.driver.get("https://demowebshop.tricentis.com/")
+        self.driver.get(self.baseurl)
         arama = AramaSayfasi(self.driver)
         arama.arama_yap(kelime)
         if senaryoturu.lower() == "negatif":

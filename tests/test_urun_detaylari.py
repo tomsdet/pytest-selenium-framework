@@ -12,7 +12,7 @@ class TestUrunDetaylari:
         self.anasayfa = Anasayfa(self.driver)
 
     def test_add_to_cart_button_adds_product_to_cart(self):
-        self.driver.get("https://demowebshop.tricentis.com/")
+        self.driver.get(self.baseurl)
 
         urun_detay_sayfasi = self.anasayfa.gift_card_olmayan_ilk_urun_ismine_tikla()
         oncesi = urun_detay_sayfasi.sepetteki_urun_sayisini_ver()
