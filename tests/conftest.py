@@ -38,7 +38,6 @@ def setup(request, browser, environment):
     yield
     driver.quit()
 
-
 def pytest_addoption(parser):
     parser.addoption("--browser")
     parser.addoption("--env")
