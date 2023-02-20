@@ -14,7 +14,7 @@ class TestHomepage(softest.TestCase):
     @pytest.mark.smoke
     def test_ust_menu_linklerini_dogrula(self):
         self.driver.get(self.baseurl)
-        expected_menu = ["BOOK", "COMPUTERS", "ELECTRONICS", "APPAREL & SHOES", "DIGITAL DOWNLOADS",
+        expected_menu = ["BOOKS", "COMPUTERS", "ELECTRONICS", "APPAREL & SHOES", "DIGITAL DOWNLOADS",
                          "JEWELRY", "GIFT CARDS"]
 
         actual_menu_items = self.anasayfa.ust_menu_isimlerini_liste_ver()

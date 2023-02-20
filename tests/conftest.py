@@ -1,3 +1,7 @@
+import getpass
+from datetime import datetime
+from pathlib import Path
+
 from selenium import webdriver
 from selenium.webdriver.safari.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
@@ -43,11 +47,37 @@ def pytest_addoption(parser):
     parser.addoption("--env")
 
 
-@pytest.fixture(scope="class", autouse=True)
+@pytest.fixture(scope="session", autouse=True)
 def browser(request):
     return request.config.getoption("--browser")
 
 
-@pytest.fixture(scope="class", autouse=True)
+@pytest.fixture(scope="session", autouse=True)
 def environment(request):
     return request.config.getoption("--env")
+
+
+def pytest_html_report_title(report):
+    report.title = "Test Otomasyon Raporu"
+
+@pytest.hookimpl(tryfirst=True)
+def pytest_configure(config):
+
+    bugun = datetime.now()
+    rapor_klasoru = Path('raporlar', bugun.strftime('%Y-%m-%d'))
+    rapor_klasoru.mkdir(parents=True, exist_ok=True)
+    rapor = rapor_klasoru / f"rapor_{bugun.strftime('%H-%M')}.html"
+    config.option.htmlpath = rapor
+    config.option.self_contained_html = True
+
+@pytest.fixture(scope='session', autouse=True)
+def configure_html_report_env(request, environment, browser):
+    request.config._metadata.update(
+        {
+            'user': getpass.getuser(),
+            'environment': environment,
+            'browser': browser
+        }
+    )
+
+
